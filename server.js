@@ -6,7 +6,7 @@ const DEFAULT_PORT = process.env.PORT || 2000;
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
-var DIST_DIR = path.join(__dirname, "../dist")
+var DIST_DIR = path.join(__dirname, "/dist")
 
 app.set("port", process.env.PORT || DEFAULT_PORT);
 
