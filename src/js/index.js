@@ -8,19 +8,16 @@ import NavBar from './components/NavBAr.jsx';
 
 // import $ from 'jquery';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {GridList, GridTile} from 'material-ui/GridList'
+import Grid from 'material-ui/GridList';
+
 
 
 class PokeApp extends Component{
     render(){
         return (
             <MuiThemeProvider>
-                <div className="pokeapp">
-                    <h1>PokeDex! </h1>
-                    <GridList cols={1} container >
-
+                <div>
                     <NavBar/>
-                    </GridList>
                     <PokemonList></PokemonList>
                 </div>
             </MuiThemeProvider>

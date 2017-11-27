@@ -4,11 +4,13 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
+import Grid from 'material-ui/GridList';
+
+import Container from  'muicss/lib/react/container.js' ;
+
 
 import Pokemon from './pokemon.jsx';
-import AppButton from './grid.jsx';
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+        
 
 class PokemonList extends Component {
     constructor(props){
@@ -40,20 +42,17 @@ class PokemonList extends Component {
         .then(response => {return response.json()})
         .then(r=>console.log(r))
         .catch((error)=> {
-            console.log(error,'error')
+            console.log('error', error)
         });
     
         fetch('http://pokeapi.salestock.net/api/v2/pokemon?limit=10')
             .then(response => response.json())
             .then(data=>{
-                console.log(data)
                 this.setState({
                     species: data.results,
                     fetched: true,
                     loading: true
                 });
-                console.log('fecth species', this.state.species)
-                console.log('fetch', this.state.fetched)
             });
            
     }
@@ -62,20 +61,17 @@ class PokemonList extends Component {
         const {species, fetched, loading} = this.state;
 
         let content;
-        console.log('fetched', fetched)
         if(fetched == true){
-            content =   <div className="pokemon-list">
-                            {species.map((poke, index)=>{
-                                console.log('poke', poke);
-                                <Pokemon key={poke.name} index={index} pokemonData={poke}/>
-                            })}
-                        </div>
+            content =   <Container className="pokemon-list" fluid='true'>
+                            {species.map((pokemon,id)=><Pokemon key={pokemon.name} index={id+1} pokemonData={pokemon}/>)}
+                        </Container>
         }else if(loading && !fetched){
             content =   <div>cargando...</div>
         }else{
             content = <div>no hay nada</div>
         }
-        return content
+        console.log('content', content)
+        return content;
     }
 }
 
